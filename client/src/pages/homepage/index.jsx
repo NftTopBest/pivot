@@ -51,13 +51,13 @@ function Homepage() {
     return (
         <div className="homepage">
             <div className='top_box'>
-                <div class="left">
+                <div className="left">
                     <h2>P.I.V.O.T.</h2>
                     <p>一个全去中心化的不贬值资产的众包估值协议</p>
                     <Button style={{ marginRight: '15px' }}>Explore</Button>
                     <Button>Learn More</Button>
                 </div>
-                <div class="right">
+                <div className="right">
                     <p>图片</p>
                 </div>
             </div>

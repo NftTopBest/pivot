@@ -1,13 +1,16 @@
 import { Button, Form, Input, message, Upload, Modal, Spin } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { useEffect, useRef, useState } from "react";
+import useEth from "../../contexts/EthContext/useEth";
+
 
 const { TextArea } = Input;
 function Publish() {
     const [messageApi, contextHolder] = message.useMessage();
-    // useEffect(() => {
-    //     document.title = '创建nft'
-    // }, [])
+    const { state: { contract} } = useEth();
+    useEffect(() => {
+        console.log(contract,'66')
+    }, [])
     const [loading, setLoading] = useState(false);
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');

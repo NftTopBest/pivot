@@ -1,28 +1,30 @@
 import React, { useReducer, useCallback, useEffect } from "react";
-import Web3 from "web3";
+// import Web3 from "web3";
+import { ethers } from 'ethers';
 import EthContext from "./EthContext";
 import { reducer, actions, initialState } from "./state";
+import jsonData from '../../contracts/Pivot'
 
 function EthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const init = useCallback(
-    async artifact => {
-      if (artifact) {
-        const web3 = new Web3(Web3.givenProvider||"ws://localhost:8546");
-        const accounts = await web3.eth.requestAccounts();
-        const networkID = await web3.eth.net.getId();
-        const { abi } = artifact;
+    async abi => {
+      if (abi) {
+        const provider = new ethers.JsonRpcProvider('https://sepolia-rpc.scroll.io');
         let address, contract;
         try {
-          address = artifact.networks[networkID].address;
-          contract = new web3.eth.Contract(abi, address);
+          address = '0x9b0FA5AE8a87EEEa5b5c4Efd3308F096EFbe852a';
+          // 利用私钥和provider创建wallet对象
+          const privateKey = 'fc528bdceb36437fb3afcd3e1ee5b8d24314799b8a37f83befd9b780ba74c7c2'
+          const wallet = new ethers.Wallet(privateKey, provider)
+          contract = new ethers.Contract(address, abi, wallet);
         } catch (err) {
           console.error(err);
         }
         dispatch({
           type: actions.init,
-          data: { artifact, web3, accounts, networkID, contract,address }
+          data: { provider, contract, address }
         });
       }
     }, []);
@@ -30,8 +32,8 @@ function EthProvider({ children }) {
   useEffect(() => {
     const tryInit = async () => {
       try {
-        const artifact = require("../../contracts/FFApe.json");
-        init(artifact);
+        const abi = jsonData;
+        init(abi);
       } catch (err) {
         console.error(err);
       }
