@@ -1,6 +1,6 @@
 import { Button, Form, Input, message, Upload, Modal, Spin } from 'antd';
-import { useEffect, useRef, useState } from "react";
 import { InboxOutlined } from '@ant-design/icons';
+import { useEffect, useRef, useState } from "react";
 
 const { TextArea } = Input;
 function Publish() {
@@ -12,13 +12,58 @@ function Publish() {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
+    const [fileList, setFileList] = useState([]);
 
+    const upload = async (info) => {
+        let reader = new FileReader()
+        console.log(info)
+        // delete info.uid
+        // reader.readAsArrayBuffer(info)
+
+        // reader.onloadend = () => {
+        //     console.log("result : ", reader.result)
+        //     saveToIpfs(reader.result).then(hash => {
+        //         console.log("hash : ", hash)
+        //         setPicHash(hash)
+        //     })
+        // }
+    }
+
+    const getBase64 = (file) =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+    const props = {
+        name: 'file',
+        multiple: false,
+        beforeUpload: () => {
+            return false;
+        },
+        onChange({ file, fileList: newFileList }) {
+            setFileList(newFileList)
+            upload(file)
+        },
+        onPreview: handlePreview,
+        listType: 'picture-card',
+        fileList: fileList,
+        maxCount: 1,
+        // showUploadList: false
+    };
     const onFinish = async ({ nftName, description }) => {
 
     };
-    const handleCancel = () => {
-
-    }
+    const handleCancel = () => setPreviewOpen(false);
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
@@ -51,8 +96,34 @@ function Publish() {
                     autoComplete="off"
                 >
                     <Form.Item
+                        label="封面图片"
+                        name="picture"
+                        // 以下两条是必须的
+                        valuePropName="fileList"
+                        // 如果没有下面这一句会报错
+                        getValueFromEvent={e => {
+                            if (Array.isArray(e)) {
+                                return e;
+                            }
+                            return e && e.fileList;
+                        }}
+                        rules={[
+                            {
+                                required: true,
+                                message: '请上传图片!',
+                            },
+                        ]}
+                    >
+                        <Upload {...props} >
+                            <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                            </p>
+                            <p className="ant-upload-text">上传图片</p>
+                        </Upload>
+                    </Form.Item>
+                    <Form.Item
                         label="项目地址"
-                        name="nftName"
+                        name="nftUrl"
                         rules={[
                             {
                                 required: true,
@@ -61,6 +132,18 @@ function Publish() {
                         ]}
                     >
                         <Input placeholder="请输入项目地址" />
+                    </Form.Item>
+                    <Form.Item
+                        label="项目名称"
+                        name="nftName"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入项目名称!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder="请输入项目名称" />
                     </Form.Item>
                     <Form.Item
                         label="作者昵称"

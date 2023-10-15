@@ -11,7 +11,7 @@ function DetailCard({ obj }) {
                 <div className={"item"}><span className='title'>名称：</span>{obj.title}</div>
                 <div className={"item"}><span className='title'>价格：</span>{obj.price}</div>
                 <Meta title="简介" className="名称" description={obj.describe} />
-                <Button>购买</Button>
+                <Button style={{marginTop: '15px'}}>购买</Button>
             </Card>
         </>
     )

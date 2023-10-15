@@ -52,8 +52,8 @@ function Homepage() {
         <div className="homepage">
             <div className='top_box'>
                 <div class="left">
-                    <h2>左侧内容</h2>
-                    <p>这里是左侧内容的一些文本。</p>
+                    <h2>P.I.V.O.T.</h2>
+                    <p>一个全去中心化的不贬值资产的众包估值协议</p>
                     <Button style={{ marginRight: '15px' }}>Explore</Button>
                     <Button>Learn More</Button>
                 </div>

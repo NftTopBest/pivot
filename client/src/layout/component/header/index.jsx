@@ -30,7 +30,7 @@ function Header() {
             icon: <BankOutlined />
         },
         {
-            label: '发布',
+            label: 'Mint',
             key: 'publish',
             icon: <BankOutlined />
         },
