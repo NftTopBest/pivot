@@ -62,6 +62,30 @@ function Publish() {
                     >
                         <Input placeholder="请输入项目地址" />
                     </Form.Item>
+                    <Form.Item
+                        label="作者昵称"
+                        name="authorName"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入作者昵称！',
+                            },
+                        ]}
+                    >
+                        <Input placeholder="请输入作者昵称" />
+                    </Form.Item>
+                    <Form.Item
+                        label="价格"
+                        name="price"
+                        rules={[
+                            {
+                                required: true,
+                                message: '请输入价格！',
+                            },
+                        ]}
+                    >
+                        <Input placeholder="请输入价格" />
+                    </Form.Item>
 
                     <Form.Item
                         label="简介"

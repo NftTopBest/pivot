@@ -13,11 +13,11 @@
   .connect {
     position: absolute;
     left: 85%;
-    top: 5px;
+    top: 4px;
 
     .nav__connect {
       width: 175px;
-      height: 38px;
+      height: 37px;
       margin: 0 auto;
 
       background-color: var(--clr-blue);
@@ -104,4 +104,11 @@
       }
     }
   }
+}
+
+.detail {
+  margin: 15px 0;
+}
+.mine {
+  margin: 15px 0;
 }
