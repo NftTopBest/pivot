@@ -1,22 +1,26 @@
 import { Button, Form, Input, message, Upload, Modal, Spin } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ethers } from 'ethers';
 import useEth from "../../contexts/EthContext/useEth";
 
 const { TextArea } = Input;
 function Publish() {
     const [messageApi, contextHolder] = message.useMessage();
-    const { state: { contract } } = useEth();
-    useEffect(() => {
-        console.log(contract, '66')
-    }, [])
+    const { state: { contract, address } } = useEth();
     const [loading, setLoading] = useState(false);
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
     const [fileList, setFileList] = useState([]);
-
+    const navigate = useNavigate()
+    const info = () => {
+        messageApi.open({
+            type: 'success',
+            content: '创建成功！',
+        });
+    };
     const upload = async (info) => {
         let reader = new FileReader()
         console.log(info)
@@ -63,8 +67,21 @@ function Publish() {
         maxCount: 1,
         // showUploadList: false
     };
-    const onFinish = async ({ nftName, description }) => {
-        
+    const onFinish = async ({ price }) => {
+        console.log(price)
+        // const transactionParameters = {
+        //     to: address, // 合约地址
+        //     value: ethers.parseEther('2.0'), // 可选：向合约发送以太币
+        //   };
+        const res = await contract.initToken(price, 10)
+        console.log(res, 3333)
+        info()
+        setTimeout(() => {
+            navigate(`/homepage`, {
+                replace: false
+            })
+        }, 1000);
+
     };
     const handleCancel = () => setPreviewOpen(false);
     const onFinishFailed = (errorInfo) => {
@@ -72,6 +89,7 @@ function Publish() {
     };
     return (
         <div className="container">
+            {contextHolder}
             <Spin spinning={loading} delay={500} tip="创建中...">
                 <div style={{ margin: '25px 0' }}>
                     <h2>
@@ -147,7 +165,7 @@ function Publish() {
                         ]}
                     >
                         <Input placeholder="请输入项目名称" />
-                    </Form.Item>                
+                    </Form.Item>
                     <Form.Item
                         label="价格"
                         name="price"
