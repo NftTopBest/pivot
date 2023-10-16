@@ -1,7 +1,8 @@
 import { Carousel, Button, Row } from 'antd';
 import { useEffect, useCallback, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import CardItem from '../../component/card/cardItem';
+import { useNavigate } from "react-router-dom";
+import bk from '../../img/bk.jpg'
 function Homepage() {
     const navigate = useNavigate()
     const testList = [
@@ -48,27 +49,32 @@ function Homepage() {
             replace: false
         })
     }
+    const toExplore = () => {
+        navigate(`/publish`, {
+            replace: false
+        })
+    }
     return (
         <div className="homepage">
             <div className='top_box'>
                 <div className="left">
                     <h2>P.I.V.O.T.</h2>
                     <p>一个全去中心化的不贬值资产的众包估值协议</p>
-                    <Button style={{ marginRight: '15px' }}>Explore</Button>
-                    <Button>Learn More</Button>
+                    <Button style={{ marginRight: '15px',marginTop:'120px' }} onClick={toExplore}>Explore</Button>
+                    {/* <Button>Learn More</Button> */}
                 </div>
                 <div className="right">
-                    <p>图片</p>
+                    <img src={bk} style={{height:'100%',width:'100%'}}/>
                 </div>
             </div>
             <div className='browse'>
                 <div className='top'>
                     <div className='left'>
-                        <span>some describe...</span>
+                        {/* <span>some describe...</span> */}
                         <h2>Browse</h2>
                     </div>
                     <div className='right'>
-                        <Button>show more</Button>
+                        {/* <Button>show more</Button> */}
                     </div>
                 </div>
                 <div className='content'>

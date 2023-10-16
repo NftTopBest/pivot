@@ -71,7 +71,8 @@
   .top_box {
     display: flex;
     margin: 20px 0;
-
+    max-height: 350px;
+    overflow: hidden;
     /* 将容器设置为 Flexbox 布局 */
     .left {
       flex: 1;
@@ -84,7 +85,7 @@
       flex: 1;
       /* 右侧区域占据可用空间的 1/2 */
       background-color: #f0f0f0;
-      padding: 10px;
+      overflow: hidden;
     }
   }
 
@@ -108,7 +109,7 @@
 
 .detail {
   margin: 15px 0;
-  max-width: 70%;
+  max-width: 50%;
 }
 .mine {
   margin: 15px 0;

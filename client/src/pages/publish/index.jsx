@@ -1,15 +1,15 @@
 import { Button, Form, Input, message, Upload, Modal, Spin } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { useEffect, useRef, useState } from "react";
+import { ethers } from 'ethers';
 import useEth from "../../contexts/EthContext/useEth";
-
 
 const { TextArea } = Input;
 function Publish() {
     const [messageApi, contextHolder] = message.useMessage();
-    const { state: { contract} } = useEth();
+    const { state: { contract } } = useEth();
     useEffect(() => {
-        console.log(contract,'66')
+        console.log(contract, '66')
     }, [])
     const [loading, setLoading] = useState(false);
     const [previewOpen, setPreviewOpen] = useState(false);
@@ -64,7 +64,7 @@ function Publish() {
         // showUploadList: false
     };
     const onFinish = async ({ nftName, description }) => {
-
+        
     };
     const handleCancel = () => setPreviewOpen(false);
     const onFinishFailed = (errorInfo) => {
@@ -147,19 +147,7 @@ function Publish() {
                         ]}
                     >
                         <Input placeholder="请输入项目名称" />
-                    </Form.Item>
-                    <Form.Item
-                        label="作者昵称"
-                        name="authorName"
-                        rules={[
-                            {
-                                required: true,
-                                message: '请输入作者昵称！',
-                            },
-                        ]}
-                    >
-                        <Input placeholder="请输入作者昵称" />
-                    </Form.Item>
+                    </Form.Item>                
                     <Form.Item
                         label="价格"
                         name="price"

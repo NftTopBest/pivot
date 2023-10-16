@@ -11,7 +11,7 @@ function Header() {
         var title = address.split('')
         title.shift()
         title = title.join('')
-        document.title = `project`
+        document.title = `P.I.V.O.T`
         setCurrent(key)
         navigate(address, {
             replace: false

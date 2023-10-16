@@ -16,9 +16,10 @@ function EthProvider({ children }) {
         try {
           address = '0x9b0FA5AE8a87EEEa5b5c4Efd3308F096EFbe852a';
           // 利用私钥和provider创建wallet对象
-          const privateKey = 'fc528bdceb36437fb3afcd3e1ee5b8d24314799b8a37f83befd9b780ba74c7c2'
+          const privateKey = '0xfc528bdceb36437fb3afcd3e1ee5b8d24314799b8a37f83befd9b780ba74c7c2'
           const wallet = new ethers.Wallet(privateKey, provider)
-          contract = new ethers.Contract(address, abi, wallet);
+          // contract = new ethers.Contract(address, abi, wallet);
+          contract = new ethers.Contract(address, abi, provider);
         } catch (err) {
           console.error(err);
         }
