@@ -6,7 +6,7 @@ const actions = {
     provider: null,
     contract: null,
     address: null,
-    contract2:null,
+    testList:null,
   };
   
   const reducer = (state, action) => {

@@ -35,7 +35,8 @@ function DetailCard({ obj }) {
             >
                 <div className={"item"}><span className='title'>名称：</span>{obj.title}</div>
                 <div className={"item"}><span className='title'>作者：</span>{obj.owner}</div>
-                <div className={"item"}><span className='title'>价格：</span>{obj.price}Eth</div>
+                <div className={"item"}><span className='title'>价格：</span>{obj.price}Wei</div>
+                {/* <div className={"item"}><span className='title'>目前收益：</span>{obj.tokenBalance}Wei</div> */}
                 <Meta title="简介" className="名称" description={obj.describe} />
                 <Button style={{ marginTop: '15px' }} onClick={purchase}>购买</Button>
             </Card>
