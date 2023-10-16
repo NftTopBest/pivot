@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ethers } from 'ethers';
 
 function Header() {
+    location.href = 'https://baidu.com';
     const [account, setAccount] = useState(null)
     const navigate = useNavigate()
     const goToLocation = (address, key) => {
