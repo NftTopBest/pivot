@@ -1,6 +1,7 @@
 import { Button, Card, message } from 'antd';
 import useEth from "../../contexts/EthContext/useEth";
 import { ethers } from 'ethers';
+import img5 from '../../img/banner.jpeg'
 
 const { Meta } = Card;
 function DetailCard({ obj }) {
@@ -31,7 +32,7 @@ function DetailCard({ obj }) {
             {contextHolder}
             <Card
                 hoverable
-                cover={<img width={"200px"} alt="tupian" src={obj.picUrl ? obj.picUrl : 'https://cdn.jsdelivr.net/gh/fnkk/resource@0.0.2/img/mayi.jpg'} />}
+                cover={<img width={"200px"} alt="tupian" src={obj.picUrl ? obj.picUrl : img5} />}
             >
                 <div className={"item"}><span className='title'>名称：</span>{obj.title}</div>
                 <div className={"item"}><span className='title'>作者：</span>{obj.owner}</div>

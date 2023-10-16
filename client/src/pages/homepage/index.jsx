@@ -7,7 +7,7 @@ import img1 from '../../img/img-1.jpg'
 import img2 from '../../img/img-2.jpg'
 import img3 from '../../img/img-3.jpg'
 import img4 from '../../img/img-4.jpg'
-import img5 from '../../img/img-5.jpg'
+import img5 from '../../img/banner.jpeg'
 function Homepage() {
     const navigate = useNavigate()
     const testList = [
@@ -43,7 +43,7 @@ function Homepage() {
             id: '4',
             picUrl: img5,
             title: '项目5',
-            describe: '当今，全球各地的文化多样性令人惊叹。从不同的语言、风俗习惯到独特的美食，每个地方都有其独特之处。文化交流变得更加容易，使我们能够更好地了解和尊重其他文化，促进世界和平与合作。',
+            describe: 'Eth Hangzhou',
             price: '3',
         },
 

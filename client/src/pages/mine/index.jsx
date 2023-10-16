@@ -78,7 +78,16 @@ function Mine() {
             position: '2',
             tags: ['nice', 'developer'],
         },
-       
+        {
+            key: '3',
+            name: 'ETHHangzhou',
+            url: 'https://github.com/eth-hangzhou/ETHHangzhou',
+            author: `@AmazingAng`,
+            profit: '25',
+            position: '2',
+            tags: ['nice', 'developer'],
+        },
+        
     ];
     return (
         <div className='mine'>
